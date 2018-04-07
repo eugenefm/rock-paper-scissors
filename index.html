@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+	<script>
+
+		let humanScore = 0;
+		let computerScore = 0;
+		let round = 5;
+
+		function computerChoice() {
+			// Your JavaScript goes here!
+			let numb = Math.floor(Math.random() * 3);
+			if (numb == 0) {
+				return "rock";
+			}
+			else if (numb == 1) {
+				return "paper";
+			}
+			else {
+				return "scissors";
+			}
+		}
+		function humanChoice() {
+			 do {
+			 	humanEntry = prompt("Select 'Rock', 'Paper' or 'Scissors'");
+			 	if (humanEntry.toLowerCase() == "rock" || humanEntry == "scissors" || humanEntry == "paper" ) {
+			 		return humanEntry.toLowerCase();
+			 	}
+			 }
+			while (humanEntry.toLowerCase() !== "rock" || humanEntry !== "scissors" || humanEntry !== "paper" ) ;
+		}
+		function playRound(human, computer) {
+			if (human === computer) {
+				alert("It's a Draw!");
+				return 0
+			}
+			if ( 
+				(human === "rock" && computer === "scissors") ||
+				(human === "scissors" && computer === "paper") ||
+				(human === "paper" && computer === "rock") ) {
+				alert("You win this round! Your " + human + " beats the computer's " + computer + ".");
+				return 1;
+			}
+			else {
+				alert("The computer wins this round! Their " + computer + " beats your " + human + ".");
+				return 2;
+				
+		}
+			}
+		function checkBoard(score) {
+			if (score === 1) {
+				humanScore++;
+			}
+			else if (score === 2) {
+				computerScore++;
+			}
+		}
+		function Game(round) {
+			do {
+				let human = humanChoice();
+				let computer = computerChoice();
+				let score = playRound(human, computer);
+				checkBoard(score);
+				if (score != 0 ) {
+					round--;
+				}
+		      } while (round > 0);
+		      if(humanScore > computerScore) { // return the final result
+		        return (`Congratulation!!! You beat the computer ${humanScore} : ${computerScore}`);
+		      }
+		      else if (humanScore < computerScore) {
+		        return (`You lose to the computer ${humanScore} : ${computerScore}`);
+		      }
+		  } 
+    
+    alert(Game(5));
+
+	</script>
+</body>
+</html>
